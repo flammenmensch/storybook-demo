@@ -1,25 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { usePokemon } from './application/usePokemon';
+import Spinner from './components/Spinner/Spinner';
+import SearchForm from './components/SearchForm/SearchForm';
+import PokemonCard from './components/PokemonCard/PokemonCard';
+import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 
 function App() {
+  const [name, setName] = React.useState('bulbasaur');
+
+  const { data, error, isError, isLoading } = usePokemon(name);
+
+  const handleSearch = React.useCallback((value) => {
+    setName(value);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <main className="container">
+      <header className="row">
+        <h1 className="display-1">Pokemon search</h1>
       </header>
-    </div>
+      <section className="row">
+        <SearchForm onSubmit={handleSearch} />
+      </section>
+      {isLoading && <Spinner />}
+      {isError && error && <ErrorMessage error={error as Error} />}
+      {data && <PokemonCard pokemon={data} />}
+    </main>
   );
 }
 
