@@ -1,11 +1,11 @@
 import React from 'react';
-import { usePokemon } from './application/usePokemon';
-import Spinner from './components/Spinner/Spinner';
-import SearchForm from './components/SearchForm/SearchForm';
-import PokemonCard from './components/PokemonCard/PokemonCard';
-import ErrorMessage from './components/ErrorMessage/ErrorMessage';
+import { usePokemon } from '../../application/usePokemon';
+import Spinner from '../Spinner/Spinner';
+import SearchForm from '../SearchForm/SearchForm';
+import PokemonCard from '../PokemonCard/PokemonCard';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
-function App() {
+const App = () => {
   const [name, setName] = React.useState('bulbasaur');
 
   const { data, error, isError, isLoading } = usePokemon(name);
@@ -27,6 +27,6 @@ function App() {
       {data && <PokemonCard pokemon={data} />}
     </main>
   );
-}
+};
 
 export default App;

@@ -19,7 +19,10 @@ const PokemonCard = (props: Props) => (
       <ul className="list-inline">
         {props.pokemon.types.map((type) => (
           <li className="list-inline-item" key={type.slot}>
-            <a href="#" className="btn btn-sm btn-outline-secondary">
+            <a
+              href={`/?search=${type.type.name}`}
+              className="btn btn-sm btn-outline-secondary"
+            >
               {type.type.name}
             </a>
           </li>
