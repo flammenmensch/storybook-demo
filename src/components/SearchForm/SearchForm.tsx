@@ -22,11 +22,12 @@ const SearchForm = (props: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form data-testid="search-form" onSubmit={handleSubmit}>
       <div className="mb-1">
         <label className="form-label">
           Search:
           <input
+            data-testid="search-input"
             value={value}
             onChange={handleChange}
             placeholder="e.g. bulbasaur"
