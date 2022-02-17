@@ -9,20 +9,17 @@ const SearchForm = (props: Props) => {
 
   const [value, setValue] = React.useState('');
 
-  const handleChange = React.useCallback((event) => {
-    setValue(event.target.value);
-  }, []);
+  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+    setValue(event.currentTarget.value);
+  };
 
-  const handleSubmit = React.useCallback(
-    (event) => {
-      event.preventDefault();
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-      if (value.trim() !== '') {
-        onSubmit(value);
-      }
-    },
-    [value, onSubmit],
-  );
+    if (value.trim() !== '') {
+      onSubmit(value);
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
