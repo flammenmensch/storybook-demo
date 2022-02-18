@@ -16,7 +16,7 @@ export const handlers = [
 
       return res(
         ctx.set('Content-Length', buffer.byteLength.toString()),
-        ctx.set('Content-Type', 'image/jpg'),
+        ctx.set('Content-Type', 'image/png'),
         ctx.body(buffer),
       );
     },
